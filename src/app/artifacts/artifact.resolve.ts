@@ -12,7 +12,7 @@ import {TaskService} from "./task.service";
 @Injectable({
   providedIn: 'root'
 })
-export class TaskResolve implements Resolve<any> {
+export class ArtifactResolve implements Resolve<any> {
 
   /**
    * Construtor da classe.
@@ -22,7 +22,7 @@ export class TaskResolve implements Resolve<any> {
    */
   constructor(
     private router: Router,
-    private service: TaskService
+    private service: ArtifactService
   ) {
   }
 
