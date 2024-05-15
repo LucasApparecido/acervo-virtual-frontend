@@ -12,7 +12,7 @@ export const routes: Routes = [
   {path:'contact', component: ContactComponent},
   {path:'create', component: CreateComponent},
   {path:'list', component: ListComponent},
-  {path:'update', component: UpdateComponent},
+  {path:'edit', component: UpdateComponent},
   {path:'delete', component: DeleteComponent},
-  {path:'read', component: ReadComponent}
+  {path:'read/:id', component: ReadComponent}
 ];
