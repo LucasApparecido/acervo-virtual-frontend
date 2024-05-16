@@ -5,12 +5,28 @@ export class Artifact {
   provenance!: string;
   collectorDonor!: string;
   familyTaxon!: string;
-  collectionYer!: number;
+  collectionYear!: number;
   locationInCollection!: string;
   periodEpochAge!: string;
   collection!: string;
   pieceDescription!: string;
   status!: boolean;
-  tombingDate!: LocalDate;
-  registrationDate!: LocalDate;
+  tombingDate!: Date;
+  registrationDate!: Date;
 }
+/*export class Artifact {
+ id?: number;
+ pieceNumber: string;
+ pieceName: string;
+ provenance: string;
+ collectorDonor: string;
+ familyTaxon: string;
+ collectionYear: number;
+ locationInCollection: string;
+ periodEpochAge: string;
+ collection: string;
+ pieceDescription: string;
+ status: string;
+ tombingDate: string;
+ registrationDate: string;
+ }*/
