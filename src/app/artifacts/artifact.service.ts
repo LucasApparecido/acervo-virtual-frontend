@@ -25,9 +25,9 @@ export class ArtifactService {
 
   save(artifact: Artifact): Observable<Artifact> {
     let response : Observable<Artifact>;
-    if (artifact.pieceId) {
+    if (artifact.artifactId) {
       console.log('Alterar:' + JSON.stringify(artifact));
-      response = this.http.put<Artifact>(`http://localhost:8080/api/v1/artifact/${artifact.pieceId}`, artifact);
+      response = this.http.put<Artifact>(`http://localhost:8080/api/v1/artifact/${artifact.artifactId}`, artifact);
     } else {
       console.log('Incluir:' + JSON.stringify(artifact));
       response = this.http.post<Artifact>('http://localhost:8080/api/v1/artifact', artifact);

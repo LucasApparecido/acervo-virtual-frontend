@@ -2,7 +2,7 @@
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, Router} from '@angular/router';
-import {TaskService} from "./task.service";
+import {ArtifactService} from "./artifact.service";
 
 /**
  * Classe resolve responsável pela busca das informações de Usuário conforme o id.
