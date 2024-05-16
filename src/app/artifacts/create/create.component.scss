@@ -1,5 +1,5 @@
 .create-artifact {
-  max-width: 600px;//definindo a largura pequena
+  max-width: 1200px; 
   margin: 0 auto;
   padding: 1em;
   background-color: #8FCB9B;
@@ -10,13 +10,26 @@
     text-align: center;
   }
 
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
+
   .form-group {
-    margin-bottom: 1.5em;
+    flex: 1 1 45%; /* Ajusta a largura das colunas */
+    margin-right: 2.5%;
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
 
     label {
       display: block;
       margin-bottom: 0.5em;
     }
+
     input,
     textarea {
       width: 100%;
@@ -35,9 +48,9 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    
+
     &:disabled {
       background-color: #ccc;
     }
   }
-  }
+}
