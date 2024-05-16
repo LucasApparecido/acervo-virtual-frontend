@@ -57,7 +57,7 @@
 
       <div class="form-group">
         <label for="artifactDescription">Descrição da Peça</label>
-        <textarea id="artifactDescription" name="artifactDescription" [(ngModel)]="artifact.artifactDescription" required></textarea>
+        <textarea id="artifactDescription" name="artifactDescription"></textarea>
       </div>
     </div>
 
@@ -80,7 +80,9 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="artifactForm.invalid">Adicionar Nova Peça</button>
-    <button type="button" class="btn btn-secondary" [routerLink]="['']">Voltar</button>
+    <div class="button-container">
+      <button type="button" class="btn btn-secondary" [routerLink]="['']">Voltar</button>
+      <button type="submit" [disabled]="artifactForm.invalid">Adicionar Nova Peça</button>
+    </div>
   </form>
 </div>

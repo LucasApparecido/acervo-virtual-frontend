@@ -14,5 +14,5 @@ export const routes: Routes = [
   {path:'list', component: ListComponent},
   {path:'edit', component: UpdateComponent},
   {path:'delete', component: DeleteComponent},
-  {path:'read/:id', component: ReadComponent}
+  {path:'read', component: ReadComponent}
 ];
