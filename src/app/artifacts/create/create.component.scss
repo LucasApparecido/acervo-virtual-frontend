@@ -1,0 +1,22 @@
+.create-artifact {
+  max-width: 300px;//definindo a largura pequena
+  margin: 0 auto;
+  padding: 1em;
+  background-color: #8FCB9B;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  h1 {
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 1.5em;
+
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+
+  }
+}
