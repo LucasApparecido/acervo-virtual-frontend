@@ -1,5 +1,5 @@
 .create-artifact {
-  max-width: 300px;//definindo a largura pequena
+  max-width: 600px;//definindo a largura pequena
   margin: 0 auto;
   padding: 1em;
   background-color: #8FCB9B;
@@ -17,6 +17,27 @@
       display: block;
       margin-bottom: 0.5em;
     }
-
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
   }
-}
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 1em;
+    background-color: #1900ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    &:disabled {
+      background-color: #ccc;
+    }
+  }
+  }
