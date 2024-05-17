@@ -6,7 +6,6 @@
   border: 1px solid #ccc;
   border-radius: 30px;
 
-
   h1 {
     text-align: center;
   }
@@ -57,10 +56,16 @@
   }
 
   button.btn-secondary {
-    background-color: #6c757d;
+    background-color: #50C878;
   }
 
   button:disabled {
-    background-color: #ccc;
+    background-color: #FFFDF7;
+    color: #12130F;
   }
+
+  button {
+    background-color: #136F63;
+  }
+
 }
