@@ -4,7 +4,6 @@ import {ContactComponent} from "./pages/contact/contact.component";
 import {CreateComponent} from "./artifacts/create/create.component";
 import {ListComponent} from "./artifacts/list/list.component";
 import {UpdateComponent} from "./artifacts/update/update.component";
-import {DeleteComponent} from "./artifacts/delete/delete.component";
 import {ReadComponent} from "./artifacts/read/read.component";
 import {ArtifactResolve} from "./artifacts/artifact.resolve";
 
@@ -17,7 +16,6 @@ export const routes: Routes = [
     artifactsData:ArtifactResolve,
     }
   },
-  {path:'update', component: UpdateComponent},
-  {path:'delete', component: DeleteComponent},
-  {path:'read', component: ReadComponent}
+  {path:'update/:id', component: UpdateComponent},
+  {path:'read/:id', component: ReadComponent}
 ];

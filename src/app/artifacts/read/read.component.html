@@ -1,88 +1,88 @@
 <div class="read-artifact">
   <h1>{{ title }}</h1>
-  <form #artifactForm="ngForm" (ngSubmit)="onSubmit()">
+  <form #artifactForm="ngForm">
     <div class="form-row">
       <div class="form-group">
         <label for="artifactNumber">Número da Peça</label>
-        <input type="text" id="artifactNumber" name="artifactNumber" [(ngModel)]="artifact.artifactNumber" required>
+        <input type="text" id="artifactNumber" name="artifactNumber" [(ngModel)]="artifact.artifactNumber" readonly>
       </div>
 
       <div class="form-group">
         <label for="artifactName">Nome da Peça</label>
-        <input type="text" id="artifactName" name="artifactName" [(ngModel)]="artifact.artifactName" required>
+        <input type="text" id="artifactName" name="artifactName" [(ngModel)]="artifact.artifactName" readonly>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="provenance">Proveniência</label>
-        <input type="text" id="provenance" name="provenance" [(ngModel)]="artifact.provenance" required>
+        <input type="text" id="provenance" name="provenance" [(ngModel)]="artifact.provenance" readonly>
       </div>
 
       <div class="form-group">
         <label for="collectorDonor">Coletor/Doação</label>
-        <input type="text" id="collectorDonor" name="collectorDonor" [(ngModel)]="artifact.collectorDonor" required>
+        <input type="text" id="collectorDonor" name="collectorDonor" [(ngModel)]="artifact.collectorDonor" readonly>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="familyTaxon">Família/Taxon</label>
-        <input type="text" id="familyTaxon" name="familyTaxon" [(ngModel)]="artifact.familyTaxon" required>
+        <input type="text" id="familyTaxon" name="familyTaxon" [(ngModel)]="artifact.familyTaxon" readonly>
       </div>
 
       <div class="form-group">
         <label for="collectionYear">Ano da Coleta</label>
-        <input type="number" id="collectionYear" name="collectionYear" [(ngModel)]="artifact.collectionYear" required>
+        <input type="number" id="collectionYear" name="collectionYear" [(ngModel)]="artifact.collectionYear" readonly>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="locationInCollection">Localização na Coleção</label>
-        <input type="text" id="locationInCollection" name="locationInCollection" [(ngModel)]="artifact.locationInCollection" required>
+        <input type="text" id="locationInCollection" name="locationInCollection" [(ngModel)]="artifact.locationInCollection" readonly>
       </div>
 
       <div class="form-group">
         <label for="periodEpochAge">Período/Época/Idade</label>
-        <input type="text" id="periodEpochAge" name="periodEpochAge" [(ngModel)]="artifact.periodEpochAge" required>
+        <input type="text" id="periodEpochAge" name="periodEpochAge" [(ngModel)]="artifact.periodEpochAge" readonly>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="collection">Coleção</label>
-        <input type="text" id="collection" name="collection" [(ngModel)]="artifact.collection" required>
+        <input type="text" id="collection" name="collection" [(ngModel)]="artifact.collection" readonly>
       </div>
 
       <div class="form-group">
         <label for="artifactDescription">Descrição da Peça</label>
-        <textarea id="artifactDescription" name="artifactDescription" [(ngModel)]="artifact.artifactDescription" required></textarea>
+        <textarea id="artifactDescription" name="artifactDescription" [(ngModel)]="artifact.artifactDescription" readonly></textarea>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="status">Status</label>
-        <input type="text" id="status" name="status" [(ngModel)]="artifact.status" required>
+        <input type="text" id="status" name="status" [(ngModel)]="artifact.status" readonly>
       </div>
 
       <div class="form-group">
         <label for="tombingDate">Data de Tombamento</label>
-        <input type="date" id="tombingDate" name="tombingDate" [(ngModel)]="artifact.tombingDate" required>
+        <input type="date" id="tombingDate" name="tombingDate" [(ngModel)]="artifact.tombingDate" readonly>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="registrationDate">Data de Registro</label>
-        <input type="date" id="registrationDate" name="registrationDate" [(ngModel)]="artifact.registrationDate" required>
+        <input type="date" id="registrationDate" name="registrationDate" [(ngModel)]="artifact.registrationDate" readonly>
       </div>
     </div>
 
     <div class="button-container">
       <button type="button" class="btn btn-secondary" [routerLink]="['']">Voltar</button>
-      <button type="button" class="btn btn-primary mr-2" [routerLink]="['edit']">Editar</button>
+      <button type="button" class="btn btn-primary mr-2" [routerLink]="['/update', artifact.artifactId]">Editar</button>
     </div>
   </form>
 </div>
