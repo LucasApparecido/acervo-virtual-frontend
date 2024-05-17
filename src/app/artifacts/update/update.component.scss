@@ -56,14 +56,21 @@
   }
 
   button.btn-secondary {
-    background-color: #6c757d;
+    background-color: #50C878;
   }
 
   button.btn-danger {
-    background-color: #dc3545;
+    background-color: #12130F;
+    color: #FFFDF7;
   }
 
   button:disabled {
-    background-color: #ccc;
+    background-color: #FFFDF7;
+    color: #12130F;
   }
+
+  button {
+    background-color: #136F63;
+  }
+
 }
