@@ -1,11 +1,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Artifact } from '../artifact';
 import { ArtifactService } from '../artifact.service';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   standalone: true,
+  imports: [
+    RouterLink
+  ],
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent {
@@ -16,15 +20,5 @@ export class ListItemComponent {
 
   constructor(private artifactService: ArtifactService) {}
 
-  delete() {
-    this.artifactService.delete(this.artifact.artifactId).subscribe({
-      next: () => {
-        alert('Excluido com sucesso');
-        this.itemChange.emit(this.artifact);
-      },
-      error: error => {
-        alert(`Erro ao excluir: ${error.error}`);
-      }
-    });
-  }
+
 }

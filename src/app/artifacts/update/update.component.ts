@@ -1,19 +1,19 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
-import {FormsModule} from "@angular/forms";
-import {ActivatedRoute, Router, RouterLink, RouterModule} from "@angular/router";
-import {Artifact} from "../artifact";
-import {ArtifactService} from "../artifact.service";
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
+import { Artifact } from '../artifact';
+import { ArtifactService } from '../artifact.service';
 
 @Component({
   selector: 'app-update',
   standalone: true,
-    imports: [
-      FormsModule,
-      RouterModule,
-      RouterLink
-    ],
+  imports: [
+    FormsModule,
+    RouterModule,
+    RouterLink
+  ],
   templateUrl: './update.component.html',
-  styleUrl: './update.component.scss'
+  styleUrls: ['./update.component.scss'] // corrigido para 'styleUrls'
 })
 export class UpdateComponent implements OnInit {
   artifact: Artifact = new Artifact();
@@ -24,8 +24,7 @@ export class UpdateComponent implements OnInit {
     private activateRouted: ActivatedRoute,
     private router: Router,
     private artifactService: ArtifactService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     const id = this.activateRouted.snapshot.paramMap.get('id'); // pegar na rota atual o parâmetro especificado na rota
@@ -60,16 +59,16 @@ export class UpdateComponent implements OnInit {
     }
   }
 
-
   onSubmit() {
-    this.artifactService.save(this.artifact)
-      .subscribe(value => {
+    this.artifactService.save(this.artifact).subscribe({
+      next: (value) => {
         console.log("Salvo:", JSON.stringify(value));
-        this.router.navigate(['/artifacts']);
-      }, error => {
+      },
+      error: (error) => {
         console.log("Erro:", JSON.stringify(error));
-        alert('Erro ao salvar: ' + error.error);
-      });
+        alert('Erro ao salvar: ' + (error.error || error.message));
+      }
+    });
   }
 
   onDelete() {
@@ -77,8 +76,9 @@ export class UpdateComponent implements OnInit {
       next: () => {
         alert('Excluido com sucesso');
         this.itemChange.emit(this.artifact);
+        this.router.navigate(['']);
       },
-      error: error => {
+      error: (error) => {
         alert(`Erro ao excluir: ${error.error}`);
       }
     });

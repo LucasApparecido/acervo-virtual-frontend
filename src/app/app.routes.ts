@@ -11,7 +11,7 @@ export const routes: Routes = [
   {path:'about', component: AboutComponent},
   {path:'contact', component: ContactComponent},
   {path:'create', component: CreateComponent},
-  {path:'list', component: ListComponent,
+  {path:'', component: ListComponent,
     resolve:{
     artifactsData:ArtifactResolve,
     }

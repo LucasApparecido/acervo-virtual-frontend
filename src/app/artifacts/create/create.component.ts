@@ -48,7 +48,7 @@ export class CreateComponent implements OnInit {
     this.artifactService.save(this.artifact).subscribe({
       next: (value) => {
         console.log("Salvo:", JSON.stringify(value));
-        this.router.navigate(['/artifacts']);
+        this.router.navigate(['']);
       },
       error: (error) => {
         console.error("Erro ao salvar:", error);
