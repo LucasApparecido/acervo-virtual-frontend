@@ -81,8 +81,8 @@
     </div>
 
     <div class="button-container">
-      <button type="button" class="btn btn-secondary" [routerLink]="['']">Voltar</button>
-      <button type="button" class="btn-danger">Excluir</button>
+      <button type="button" class="btn btn-secondary" [routerLink]="['/artifacts']">Voltar</button>
+      <button type="button" class="btn btn-danger" (click)="onDelete()">Excluir</button>
       <button type="submit" class="btn btn-primary mr-2">Salvar</button>
     </div>
   </form>

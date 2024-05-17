@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Artifact} from "../artifact";
-import {ActivatedRoute, Router, RouterLink, RouterModule} from "@angular/router";
-import {ArtifactService} from "../artifact.service";
-import {FormsModule} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Artifact } from "../artifact";
+import { ActivatedRoute, Router, RouterLink, RouterModule } from "@angular/router";
+import { ArtifactService } from "../artifact.service";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-create',
@@ -13,7 +13,7 @@ import {FormsModule} from "@angular/forms";
     RouterLink
   ],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.scss'
+  styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
   artifact: Artifact = new Artifact();
@@ -23,11 +23,10 @@ export class CreateComponent implements OnInit {
     private activateRouted: ActivatedRoute,
     private router: Router,
     private artifactService: ArtifactService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
-    const id = this.activateRouted.snapshot.paramMap.get('id'); // pegar na rota atual o parâmetro especificado na rota
+    const id = this.activateRouted.snapshot.paramMap.get('id');
     console.log("ID edição:" + id + ":");
     if (id) {
       this.artifactService.getById(parseInt(id)).subscribe(value => {
@@ -38,20 +37,23 @@ export class CreateComponent implements OnInit {
           this.title = 'Alterando peça';
         }
       }, error => {
-        console.log("Erro:", JSON.stringify(error));
+        console.error("Erro ao buscar os dados:", error);
         alert(`Erro ao buscar os dados: ${error.error}`);
       });
     }
   }
 
   onSubmit() {
-    this.artifactService.save(this.artifact)
-      .subscribe(value => {
+    console.log("Dados a serem enviados:", JSON.stringify(this.artifact));
+    this.artifactService.save(this.artifact).subscribe({
+      next: (value) => {
         console.log("Salvo:", JSON.stringify(value));
         this.router.navigate(['/artifacts']);
-      }, error => {
-        console.log("Erro:", JSON.stringify(error));
+      },
+      error: (error) => {
+        console.error("Erro ao salvar:", error);
         alert('Erro ao salvar: ' + error.error);
-      });
+      }
+    });
   }
 }
