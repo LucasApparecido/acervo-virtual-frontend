@@ -1,0 +1,31 @@
+.artefato-title{
+  font-size: 48px;
+  color: #12130F;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+
+  .btn{
+  display: flex;
+  width: auto;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+}
+.list-group {
+  list-style-type: none; /* Remove os marcadores padrão da lista */
+  padding: 0; /* Remove o padding padrão */
+  margin: 0; /* Remove a margem padrão */
+}
+
+.list-group-item {
+  margin-bottom: 10px; /* Espaço entre os itens da lista */
+  padding: 10px; /* Espaçamento interno dos itens */
+  border: 1px solid #ccc; /* Borda dos itens */
+  border-radius: 5px; /* Bordas arredondadas dos itens */
+}
