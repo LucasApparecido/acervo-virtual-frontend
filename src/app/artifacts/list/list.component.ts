@@ -7,6 +7,7 @@ import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
 import {Artifact} from "../artifact";
 import {ArtifactService} from "../artifact.service";
+import {ListItemComponent} from "../list-item/list-item.component";
 
 @Component({
   selector: 'app-list',
@@ -15,7 +16,8 @@ import {ArtifactService} from "../artifact.service";
     RouterLink,
     NgForOf,
     NgClass,
-    NgIf
+    NgIf,
+    ListItemComponent,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'

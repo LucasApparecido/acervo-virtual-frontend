@@ -1,0 +1,21 @@
+<h2>Listagem Artefato</h2>
+<button type="button" [routerLink]="['/create']" class="btn btn-primary mr-1">
+  Incluir Nova Peça
+</button>
+<button type="button" (click)="reload()" class="btn btn-primary mr-1">
+  Recarregar
+</button>
+
+<hr />
+
+<section>
+  <ul clss="list-group">
+    <li class="list-group-item" *ngFor="let artifact of artifacts">
+    <app-list-item [artifact]="artifact" (itemChange)="refresh($event)"></app-list-item>
+  </li>
+
+  <div *ngIf="artifacts.length === 0" class="alert alert-warning" role="alert">
+    Nenhum artefato foi cadastrado ainda :(
+  </div>
+  </ul>
+</section>
