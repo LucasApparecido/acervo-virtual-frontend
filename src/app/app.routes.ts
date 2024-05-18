@@ -5,7 +5,7 @@ import {CreateComponent} from "./artifacts/create/create.component";
 import {ListComponent} from "./artifacts/list/list.component";
 import {UpdateComponent} from "./artifacts/update/update.component";
 import {ReadComponent} from "./artifacts/read/read.component";
-import {ArtifactResolve} from "./artifacts/artifact.resolve";
+import {ArtifactResolve} from "./artifacts/shared/artifact.resolve";
 
 export const routes: Routes = [
   {path:'about', component: AboutComponent},

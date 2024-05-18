@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Artifact } from "../artifact";
+import { Artifact } from "../shared/artifact";
 import { ActivatedRoute, Router, RouterLink, RouterModule } from "@angular/router";
-import { ArtifactService } from "../artifact.service";
+import { ArtifactService } from "../shared/artifact.service";
 import { FormsModule } from "@angular/forms";
 
 @Component({

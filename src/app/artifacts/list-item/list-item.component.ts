@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Artifact } from '../artifact';
-import { ArtifactService } from '../artifact.service';
+import { Artifact } from '../shared/artifact';
+import { ArtifactService } from '../shared/artifact.service';
 import {RouterLink} from "@angular/router";
 
 @Component({

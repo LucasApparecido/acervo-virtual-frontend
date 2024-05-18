@@ -5,8 +5,8 @@ import { RouterLink } from '@angular/router';
 import { NgForOf } from '@angular/common';
 import { NgClass } from '@angular/common';
 import { NgIf } from '@angular/common';
-import {Artifact} from "../artifact";
-import {ArtifactService} from "../artifact.service";
+import {Artifact} from "../shared/artifact";
+import {ArtifactService} from "../shared/artifact.service";
 import {ListItemComponent} from "../list-item/list-item.component";
 
 @Component({

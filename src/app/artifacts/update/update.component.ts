@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
-import { Artifact } from '../artifact';
-import { ArtifactService } from '../artifact.service';
+import { Artifact } from '../shared/artifact';
+import { ArtifactService } from '../shared/artifact.service';
 
 @Component({
   selector: 'app-update',

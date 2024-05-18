@@ -8,13 +8,20 @@
   display: flex;
   justify-content: space-between;
   padding: 1em 0;
+  margin: 0 10px;
 
-  .btn{
-  display: flex;
-  width: auto;
-  color: #ffffff;
-  border-radius: 4px;
-  cursor: pointer;
+  .btn {
+    width: auto;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn.btn-primary {
+    background-color: #12130F;
+  }
+
+  .btn.btn-secondary {
+    background-color: #50C878;
   }
 }
 .list-group {
