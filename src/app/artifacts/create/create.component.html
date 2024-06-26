@@ -62,9 +62,13 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group">
-        <label for="status">Status</label>
-        <input type="text" id="status" name="status" [(ngModel)]="artifact.status" required>
+      <div class="form-group checkbox-group">
+
+        <label for="status">
+          <input type="checkbox" id="status" name="status" [(ngModel)]="artifact.status">
+          <span class="checkbox-custom"></span>
+          Status
+        </label>
       </div>
 
       <div class="form-group">

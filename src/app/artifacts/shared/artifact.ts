@@ -10,7 +10,7 @@ export class Artifact {
   periodEpochAge!: string;
   collection!: string;
   artifactDescription!: string;
-  status!: boolean;
+  status: boolean = false;
   tombingDate!: Date;
   registrationDate!: Date;
 }
