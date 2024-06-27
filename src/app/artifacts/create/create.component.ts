@@ -3,6 +3,9 @@ import { Artifact } from "../shared/artifact";
 import { ActivatedRoute, Router, RouterLink, RouterModule } from "@angular/router";
 import { ArtifactService } from "../shared/artifact.service";
 import { FormsModule } from "@angular/forms";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {config} from "rxjs";
+import {DialogMessageOkComponent} from "../../core/dailog-message-ok/dialog-message-ok.component";
 
 @Component({
   selector: 'app-create',
@@ -19,10 +22,12 @@ export class CreateComponent implements OnInit {
   artifact: Artifact = new Artifact();
   title: string = 'Nova peça';
 
+  private dialogRef!: MatDialogRef<any>;
   constructor(
     private activateRouted: ActivatedRoute,
     private router: Router,
-    private artifactService: ArtifactService
+    private artifactService: ArtifactService,
+    private  dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -48,12 +53,27 @@ export class CreateComponent implements OnInit {
     this.artifactService.save(this.artifact).subscribe({
       next: (value) => {
         console.log("Salvo:", JSON.stringify(value));
+
+        this.showMessage("Artefato salvo com sucesso!");
+
         this.router.navigate(['']);
       },
       error: (error) => {
         console.error("Erro ao salvar:", error);
-        alert('Erro ao salvar: ' + error.error);
+        this.showMessage('Erro ao salvar:\n' + error.error);
       }
     });
+  }
+
+  private showMessage(message: string) {
+    this.dialogRef = this.dialog.open(DialogMessageOkComponent, {
+      minWidth: "2em",
+      minHeight: "2em",
+      disableClose: true,
+      data: message
+    });
+    this.dialogRef.afterClosed().subscribe(value => {
+      console.log("Botão fechar acionado");
+    })
   }
 }
