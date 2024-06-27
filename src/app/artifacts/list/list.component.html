@@ -10,12 +10,31 @@
 </div>
 <hr />
 
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Ordenar por</mat-label>
+    <mat-select id="sortOrder" (selectionChange)="onSortOrderChange($event.value)" [(ngModel)]="sortOrder">
+      <mat-option value="artifactName">Nome</mat-option>
+      <mat-option value="registrationDate">Data de Registro</mat-option>
+      <mat-option value="artifactNumber">Número do Artefato</mat-option>
+      <mat-option value="collectionYear">Ano de Coleta</mat-option>
+      <mat-option value="provenance">Proveniência</mat-option>
+      <mat-option value="collectorDonor">Coletor/Doado</mat-option>
+      <mat-option value="familyTaxon">Taxonomia da Família</mat-option>
+      <mat-option value="locationInCollection">Localização na Coleção</mat-option>
+      <mat-option value="periodEpochAge">Período/Era/Idade</mat-option>
+      <mat-option value="status">Status</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
 <section>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let artifact of artifacts">
+    <li class="list-group-item" *ngFor="let artifact of sortedArtifacts">
       <app-list-item [artifact]="artifact" (itemChange)="refresh($event)"></app-list-item>
     </li>
-    <div *ngIf="artifacts.length === 0" class="alert alert-warning" role="alert">
+    <div *ngIf="sortedArtifacts.length === 0" class="alert alert-warning" role="alert">
       Nenhum artefato foi cadastrado ainda :(
     </div>
   </ul>

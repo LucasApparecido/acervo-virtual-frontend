@@ -14,4 +14,3 @@ export class Artifact {
   tombingDate!: Date;
   registrationDate!: Date;
 }
-
