@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -9,8 +9,10 @@ import {Artifact} from "../shared/artifact";
 import {ArtifactService} from "../shared/artifact.service";
 import {ListItemComponent} from "../list-item/list-item.component";
 import {MatOption} from "@angular/material/autocomplete";
-import {MatFormField, MatLabel, MatSelect, MatSelectChange} from "@angular/material/select";
+import {MatFormField, MatLabel, MatSelect} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-list',
@@ -26,6 +28,7 @@ import {FormsModule} from "@angular/forms";
     MatLabel,
     MatFormField,
     FormsModule,
+    MatPaginator,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
@@ -35,6 +38,12 @@ export class ListComponent implements OnInit {
   sortedArtifacts: Artifact[] = [];
   sortOrder: string = 'artifactName'; // Valor padrão de ordenação
 
+  // Variáveis para paginação
+  pageSize = 5; // Quantidade de itens por página
+  pageIndex = 0; // Página inicial (0-indexed)
+
+  // Referência ao paginator do Angular Material
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     public artifactService: ArtifactService,
     route: ActivatedRoute,
@@ -52,12 +61,27 @@ export class ListComponent implements OnInit {
     this.artifactService.getAll().subscribe(value => {
       this.artifacts = value;
       this.sortArtifacts();// Chama a função para ordenar os artefatos
+      this.setupPaginator();
     });
   }
 
   onSortOrderChange(order: string) {
     this.sortOrder = order;
     this.sortArtifacts();
+  }
+  setupPaginator() {
+    this.paginator.length = this.artifacts.length;
+    this.paginator.pageSize = this.pageSize;
+    this.paginator.pageIndex = this.pageIndex;
+  }
+  onPageChange(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    // Recalcular a lista de artefatos exibidos com base na página e tamanho da página
+    this.sortedArtifacts = this.artifacts.slice(
+      event.pageIndex * event.pageSize,
+      (event.pageIndex + 1) * event.pageSize
+    );
   }
   sortArtifacts() {
     this.sortedArtifacts = [...this.artifacts].sort((a, b) => {

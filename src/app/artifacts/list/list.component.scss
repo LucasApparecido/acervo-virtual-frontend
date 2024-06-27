@@ -36,3 +36,12 @@
   border: 1px solid #ccc; /* Borda dos itens */
   border-radius: 5px; /* Bordas arredondadas dos itens */
 }
+/* Estilos para o paginador */
+.mat-paginator {
+  margin-top: 10px;
+}
+
+.mat-paginator-range-label {
+  font-size: 14px;
+  color: #666;
+}

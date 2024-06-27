@@ -28,7 +28,6 @@
   </mat-form-field>
 </div>
 
-
 <section>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let artifact of sortedArtifacts">
@@ -39,3 +38,10 @@
     </div>
   </ul>
 </section>
+
+<mat-paginator [length]="artifacts.length"
+               [pageSize]="pageSize"
+               [pageIndex]="pageIndex"
+               [pageSizeOptions]="[5, 10, 25, 100]"
+               (page)="onPageChange($event)">
+</mat-paginator>
