@@ -1,19 +1,23 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { Artifact } from '../shared/artifact';
 import { ArtifactService } from '../shared/artifact.service';
+import { MatDialog } from '@angular/material/dialog';
+import {MessageService} from "../../core/message.service";
+import {DataMessageConfirm} from "../../core/data-message-confirm";
+import {DialogMessageConfirmComponent} from "../../core/dialog-message-confirm/dialog-message-confirm.component";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-update',
   standalone: true,
   imports: [
-    FormsModule,
     RouterModule,
-    RouterLink
+    RouterLink,
+    FormsModule
   ],
   templateUrl: './update.component.html',
-  styleUrls: ['./update.component.scss'] // corrigido para 'styleUrls'
+  styleUrls: ['./update.component.scss']
 })
 export class UpdateComponent implements OnInit {
   artifact: Artifact = new Artifact();
@@ -23,11 +27,13 @@ export class UpdateComponent implements OnInit {
   constructor(
     private activateRouted: ActivatedRoute,
     private router: Router,
-    private artifactService: ArtifactService
-  ) { }
+    private artifactService: ArtifactService,
+    private messageService: MessageService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    const id = this.activateRouted.snapshot.paramMap.get('id'); // pegar na rota atual o parâmetro especificado na rota
+    const id = this.activateRouted.snapshot.paramMap.get('id');
     console.log("ID edição: " + id);
 
     if (id) {
@@ -41,21 +47,21 @@ export class UpdateComponent implements OnInit {
               console.log("INIT FORM: " + JSON.stringify(value));
             } else {
               console.error('Artifact não encontrado.');
-              alert('Artifact não encontrado.');
+              this.messageService.showMessage('Artifact não encontrado.');
             }
           },
           error: (error) => {
-            console.log("Erro: ", error);
-            alert(`Erro ao buscar os dados: ${error.message || error}`);
+            console.error("Erro: ", error);
+            this.messageService.showMessage(`Erro ao buscar os dados: ${error.message || error}`);
           }
         });
       } else {
         console.error('ID inválido.');
-        alert('ID inválido.');
+        this.messageService.showMessage('ID inválido.');
       }
     } else {
       console.error('ID não fornecido.');
-      alert('ID não fornecido.');
+      this.messageService.showMessage('ID não fornecido.');
     }
   }
 
@@ -63,24 +69,39 @@ export class UpdateComponent implements OnInit {
     this.artifactService.save(this.artifact).subscribe({
       next: (value) => {
         console.log("Salvo:", JSON.stringify(value));
+        this.messageService.showMessage("Artefato alterado com sucesso!");
       },
       error: (error) => {
-        console.log("Erro:", JSON.stringify(error));
-        alert('Erro ao salvar: ' + (error.error || error.message));
+        console.error("Erro:", JSON.stringify(error));
+        this.messageService.showMessage('Erro ao salvar: ' + (error.error || error.message));
       }
     });
   }
 
   onDelete() {
-    this.artifactService.delete(this.artifact.artifactId).subscribe({
-      next: () => {
-        alert('Excluido com sucesso');
-        this.itemChange.emit(this.artifact);
-        this.router.navigate(['']);
+    const dataConfirm: DataMessageConfirm = {
+      message: 'Você tem certeza que deseja excluir este artefato?',
+      okLabel: 'Excluir',
+      okAction: () => {
+        this.artifactService.delete(this.artifact.artifactId).subscribe({
+          next: () => {
+            this.messageService.showMessage('Excluído com sucesso');
+            this.itemChange.emit(this.artifact);
+            this.router.navigate(['']);
+          },
+          error: (error) => {
+            this.messageService.showMessage(`Erro ao excluir: ${error.error}`);
+          }
+        });
       },
-      error: (error) => {
-        alert(`Erro ao excluir: ${error.error}`);
+      cancelLabel: 'Cancelar',
+      cancelAction: () => {
+        console.log('Ação de exclusão cancelada.');
       }
+    };
+
+    this.dialog.open(DialogMessageConfirmComponent, {
+      data: dataConfirm
     });
   }
 }
