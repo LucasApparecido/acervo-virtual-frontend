@@ -6,6 +6,7 @@ import {ListComponent} from "./artifacts/list/list.component";
 import {UpdateComponent} from "./artifacts/update/update.component";
 import {ReadComponent} from "./artifacts/read/read.component";
 import {ArtifactResolve} from "./artifacts/shared/artifact.resolve";
+import {CorrectionComponent} from "./artifacts/correction/correction.component";
 
 export const routes: Routes = [
   {path:'about', component: AboutComponent},
@@ -17,5 +18,6 @@ export const routes: Routes = [
     }
   },
   {path:'update/:id', component: UpdateComponent},
-  {path:'read/:id', component: ReadComponent}
+  {path:'read/:id', component: ReadComponent},
+  {path:'correction/:id', component: CorrectionComponent}
 ];
