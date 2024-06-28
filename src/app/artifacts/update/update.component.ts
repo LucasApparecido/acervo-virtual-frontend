@@ -69,7 +69,9 @@ export class UpdateComponent implements OnInit {
     this.artifactService.save(this.artifact).subscribe({
       next: (value) => {
         console.log("Salvo:", JSON.stringify(value));
-        this.messageService.showMessage("Artefato alterado com sucesso!");
+        this.messageService.showMessage('Artefato alterado com sucesso!');
+        this.itemChange.emit(this.artifact); // Emitir evento de mudança
+        this.router.navigate(['']);
       },
       error: (error) => {
         console.error("Erro:", JSON.stringify(error));
@@ -86,7 +88,7 @@ export class UpdateComponent implements OnInit {
         this.artifactService.delete(this.artifact.artifactId).subscribe({
           next: () => {
             this.messageService.showMessage('Excluído com sucesso');
-            this.itemChange.emit(this.artifact);
+            //this.itemChange.emit(this.artifact);
             this.router.navigate(['']);
           },
           error: (error) => {
