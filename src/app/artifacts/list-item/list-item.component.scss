@@ -1,11 +1,14 @@
 .artifact-item{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #ccc;
-  padding: 10px;
+  border: 1px solid #8FCB9B;
+  padding: 50px;
   margin-bottom: 10px;
   border-radius: 5px;
+  width: 100%;
+  max-height: 200px;
 }
 
 .artifact-item h3{
@@ -19,4 +22,5 @@ button{
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 10px; // Adiciona uma margem no topo do botão para separá-lo do texto
 }

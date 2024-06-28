@@ -1,6 +1,6 @@
-<h2 class="artefato-title">Listagem Artefato</h2>
+<h2 class="artefato-title">Listagem do Acervo</h2>
 <hr />
-<div class="button-container"> <!-- Adicionado um contêiner para os botões -->
+<div class="button-container">
   <button type="button" [routerLink]="['/create']" class="btn btn-primary mr-1">
     Incluir Nova Peça
   </button>
@@ -10,27 +10,21 @@
 </div>
 <hr />
 
-<div>
+<div class="options">
   <mat-form-field appearance="fill">
     <mat-label>Ordenar por</mat-label>
     <mat-select id="sortOrder" (selectionChange)="onSortOrderChange($event.value)" [(ngModel)]="sortOrder">
-      <mat-option value="artifactName">Nome</mat-option>
+      <mat-option value="artifactName">Ordem Alfabetica</mat-option>
       <mat-option value="registrationDate">Data de Registro</mat-option>
-      <mat-option value="artifactNumber">Número do Artefato</mat-option>
+      <mat-option value="tombingDate">Data de Tombamento</mat-option>
       <mat-option value="collectionYear">Ano de Coleta</mat-option>
-      <mat-option value="provenance">Proveniência</mat-option>
-      <mat-option value="collectorDonor">Coletor/Doado</mat-option>
-      <mat-option value="familyTaxon">Taxonomia da Família</mat-option>
-      <mat-option value="locationInCollection">Localização na Coleção</mat-option>
-      <mat-option value="periodEpochAge">Período/Era/Idade</mat-option>
-      <mat-option value="status">Status</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
 
 <section>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let artifact of sortedArtifacts">
+    <li class="list-group-item item-container" *ngFor="let artifact of sortedArtifacts">
       <app-list-item [artifact]="artifact" (itemChange)="refresh($event)"></app-list-item>
     </li>
     <div *ngIf="sortedArtifacts.length === 0" class="alert alert-warning" role="alert">
@@ -42,6 +36,6 @@
 <mat-paginator [length]="artifacts.length"
                [pageSize]="pageSize"
                [pageIndex]="pageIndex"
-               [pageSizeOptions]="[5, 10, 25, 100]"
+               [pageSizeOptions]="[25, 50, 100, 200]"
                (page)="onPageChange($event)">
 </mat-paginator>

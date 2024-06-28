@@ -64,11 +64,6 @@
       transition: background-color 0.3s, border-color 0.3s;
     }
 
-    input[type="checkbox"]:checked + .checkbox-custom {
-      background-color: #c02222;
-      border-color: #50C878;
-    }
-
     input[type="checkbox"]:checked + .checkbox-custom::after {
       content: '✓';
       position: absolute;
@@ -76,7 +71,7 @@
       top: 50%;
       transform: translate(-50%, -50%);
       font-size: 18px;
-      color: #fff;
+      color: #136F63;
     }
 
     label {

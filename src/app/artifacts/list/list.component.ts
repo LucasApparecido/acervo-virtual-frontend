@@ -33,16 +33,15 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
+
 export class ListComponent implements OnInit {
   artifacts: Artifact[] = [];
   sortedArtifacts: Artifact[] = [];
-  sortOrder: string = 'artifactName'; // Valor padrão de ordenação
+  sortOrder: string = 'artifactName';
 
-  // Variáveis para paginação
-  pageSize = 5; // Quantidade de itens por página
-  pageIndex = 0; // Página inicial (0-indexed)
+  pageSize = 25;
+  pageIndex = 0;
 
-  // Referência ao paginator do Angular Material
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     public artifactService: ArtifactService,
@@ -53,14 +52,31 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadArtifacts();
-    this.retrieveSortOrder(); // Recupera a última ordenação ao inicializar o componente
+    this.retrieveSortOrder();
+  }
+
+  ngAfterViewInit() {
+    this.paginator._intl.itemsPerPageLabel = 'Itens por página:';
+    this.paginator._intl.nextPageLabel = 'Próxima página';
+    this.paginator._intl.previousPageLabel = 'Página anterior';
+    this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      if (length === 0 || pageSize === 0) {
+        return `0 de ${length}`;
+      }
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ?
+        Math.min(startIndex + pageSize, length) :
+        startIndex + pageSize;
+      return `${startIndex + 1} - ${endIndex} de ${length}`;
+    };
+    this.paginator._intl.changes.next(); // Necessário para atualizar os labels
   }
 
   loadArtifacts(){
     this.artifacts = [];
     this.artifactService.getAll().subscribe(value => {
       this.artifacts = value;
-      this.sortArtifacts();// Chama a função para ordenar os artefatos
+      this.sortArtifacts();
       this.setupPaginator();
     });
   }
@@ -69,20 +85,22 @@ export class ListComponent implements OnInit {
     this.sortOrder = order;
     this.sortArtifacts();
   }
+
   setupPaginator() {
     this.paginator.length = this.artifacts.length;
     this.paginator.pageSize = this.pageSize;
     this.paginator.pageIndex = this.pageIndex;
   }
+
   onPageChange(event: PageEvent) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-    // Recalcular a lista de artefatos exibidos com base na página e tamanho da página
     this.sortedArtifacts = this.artifacts.slice(
       event.pageIndex * event.pageSize,
       (event.pageIndex + 1) * event.pageSize
     );
   }
+
   sortArtifacts() {
     this.sortedArtifacts = [...this.artifacts].sort((a, b) => {
       switch (this.sortOrder) {
@@ -90,27 +108,15 @@ export class ListComponent implements OnInit {
           return a.artifactName.localeCompare(b.artifactName);
         case 'registrationDate':
           return new Date(a.registrationDate).getTime() - new Date(b.registrationDate).getTime();
-        case 'artifactNumber':
-          return a.artifactNumber.localeCompare(b.artifactNumber);
+        case 'tombingDate':
+          return new Date(a.tombingDate).getTime() - new Date(b.tombingDate).getTime();
         case 'collectionYear':
           return a.collectionYear - b.collectionYear;
-        case 'provenance':
-          return a.provenance.localeCompare(b.provenance);
-        case 'collectorDonor':
-          return a.collectorDonor.localeCompare(b.collectorDonor);
-        case 'familyTaxon':
-          return a.familyTaxon.localeCompare(b.familyTaxon);
-        case 'locationInCollection':
-          return a.locationInCollection.localeCompare(b.locationInCollection);
-        case 'periodEpochAge':
-          return a.periodEpochAge.localeCompare(b.periodEpochAge);
-        case 'status':
-          return (a.status === b.status) ? 0 : a.status ? -1 : 1;
         default:
           return 0;
       }
     });
-    this.saveSortOrder(); // Salva o estado da ordenação após reordenar
+    this.saveSortOrder();
   }
   reload() {
     /*this.artifacts = [];
