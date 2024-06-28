@@ -4,7 +4,7 @@
     <div class="form-row">
       <div class="form-group">
         <label for="artifactNumber">Número da Peça</label>
-        <input type="text" id="artifactNumber" name="artifactNumber" [(ngModel)]="artifact.artifactNumber" required>
+        <input type="text" id="artifactNumber" name="artifactNumber" [(ngModel)]="artifact.artifactNumber" required readonly>
       </div>
 
       <div class="form-group">
@@ -62,24 +62,24 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group checkbox-group">
-        <label for="status">
-          <span class="checkbox-custom"></span>
-          Analise completa?
-          <input type="checkbox" id="status" name="status" [(ngModel)]="artifact.status">
-        </label>
+      <div class="form-group">
+        <label for="status">Analise Completa?</label>
+        <select id="status" name="status" [(ngModel)]="artifact.status" required>
+          <option value="true">Sim</option>
+          <option value="false">Não</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="tombingDate">Data de Tombamento</label>
-        <input type="date" id="tombingDate" name="tombingDate" [(ngModel)]="artifact.tombingDate" required>
+        <input type="date" id="tombingDate" name="tombingDate" [(ngModel)]="artifact.tombingDate" max="{{todayDate}}" required>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="registrationDate">Data de Registro</label>
-        <input type="date" id="registrationDate" name="registrationDate" [(ngModel)]="artifact.registrationDate" required>
+        <input type="date" id="registrationDate" name="registrationDate" [(ngModel)]="artifact.registrationDate" max="{{todayDate}}" required readonly>
       </div>
     </div>
 

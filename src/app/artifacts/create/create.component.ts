@@ -21,6 +21,7 @@ import {DialogMessageOkComponent} from "../../core/dailog-message-ok/dialog-mess
 export class CreateComponent implements OnInit {
   artifact: Artifact = new Artifact();
   title: string = 'Nova peça';
+  todayDate: string;
 
   private dialogRef!: MatDialogRef<any>;
   constructor(
@@ -28,7 +29,15 @@ export class CreateComponent implements OnInit {
     private router: Router,
     private artifactService: ArtifactService,
     private  dialog: MatDialog
-  ) {}
+  ) {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    this.todayDate = yyyy + '-' + mm + '-' + dd;
+    this.artifact.registrationDate = new Date();
+  }
 
   ngOnInit(): void {
     const id = this.activateRouted.snapshot.paramMap.get('id');
@@ -46,6 +55,7 @@ export class CreateComponent implements OnInit {
         alert(`Erro ao buscar os dados: ${error.error}`);
       });
     }
+
   }
 
   onSubmit() {

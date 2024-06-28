@@ -76,8 +76,9 @@ export class ListComponent implements OnInit {
     this.artifacts = [];
     this.artifactService.getAll().subscribe(value => {
       this.artifacts = value;
-      this.sortArtifacts();
       this.setupPaginator();
+      this.onPageChange({pageIndex: this.pageIndex, pageSize: this.pageSize} as PageEvent);
+      this.sortArtifacts();
     });
   }
 
@@ -102,7 +103,7 @@ export class ListComponent implements OnInit {
   }
 
   sortArtifacts() {
-    this.sortedArtifacts = [...this.artifacts].sort((a, b) => {
+    this.artifacts.sort((a, b) => {
       switch (this.sortOrder) {
         case 'artifactName':
           return a.artifactName.localeCompare(b.artifactName);
@@ -116,8 +117,10 @@ export class ListComponent implements OnInit {
           return 0;
       }
     });
+    this.onPageChange({pageIndex: this.pageIndex, pageSize: this.pageSize} as PageEvent);
     this.saveSortOrder();
   }
+
   reload() {
     /*this.artifacts = [];
     this.artifactService.getAll().subscribe(value => {

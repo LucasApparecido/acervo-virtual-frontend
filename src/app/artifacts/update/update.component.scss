@@ -74,43 +74,5 @@
     background-color: #136F63;
   }
 
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1em;
 
-    input[type="checkbox"] {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-    }
-
-    input[type="checkbox"] + .checkbox-custom {
-      position: relative;
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      background-color: #fff;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      transition: background-color 0.3s, border-color 0.3s;
-    }
-
-    input[type="checkbox"]:checked + .checkbox-custom::after {
-      content: '✓';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 18px;
-      color: #fff;
-    }
-
-    label {
-      margin-left: 10px;
-      cursor: pointer;
-    }
-  }
 }

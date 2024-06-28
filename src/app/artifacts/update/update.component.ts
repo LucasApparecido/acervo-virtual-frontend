@@ -23,6 +23,7 @@ export class UpdateComponent implements OnInit {
   artifact: Artifact = new Artifact();
   title: string = 'Peça x';
   itemChange: EventEmitter<Artifact> = new EventEmitter<Artifact>();
+  todayDate: string;
 
   constructor(
     private activateRouted: ActivatedRoute,
@@ -30,7 +31,14 @@ export class UpdateComponent implements OnInit {
     private artifactService: ArtifactService,
     private messageService: MessageService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    this.todayDate = yyyy + '-' + mm + '-' + dd;
+  }
 
   ngOnInit(): void {
     const id = this.activateRouted.snapshot.paramMap.get('id');
